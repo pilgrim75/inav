@@ -1,3 +1,19 @@
+// ================================================================
+// ПАТЧЕННЫЙ target.h для SPEEDYBEEF405V4 iNav 9.x
+// Плата: RC405 / VOGUN XV (manufacturer_id RC405)
+// 
+// ИЗМЕНЕНИЕ: I2C1 пины исправлены под реальный маппинг платы:
+//   I2C1_SCL: PB8 → PB6
+//   I2C1_SDA: PB9 → PB7
+//
+// Причина: оригинальный iNav таргет использует PB8/PB9,
+// но на данной плате барометр подключён к PB6/PB7
+// что подтверждено через Betaflight dump (resource I2C_SCL 1 B06)
+//
+// Сборка: https://build.inav.flights
+//   → Custom Target → загрузить этот файл → версия 9.0.x
+// ================================================================
+
 /*
  * This file is part of INAV Project.
  *
@@ -93,8 +109,8 @@
 // *************** I2C(Baro & I2C) **************************
 #define USE_I2C
 #define USE_I2C_DEVICE_1
-#define I2C1_SCL                PB8
-#define I2C1_SDA                PB9
+#define I2C1_SCL                PB6   // PATCHED: RC405/VOGUN XV uses PB6 (was PB8)
+#define I2C1_SDA                PB7   // PATCHED: RC405/VOGUN XV uses PB7 (was PB9)
 
 #define USE_BARO
 #define BARO_I2C_BUS            BUS_I2C1
