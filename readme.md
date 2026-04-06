@@ -158,3 +158,4 @@ https://github.com/iNavFlight/inav-configurator-nightly/releases
 https://github.com/iNavFlight/inav/releases
 
 
+
