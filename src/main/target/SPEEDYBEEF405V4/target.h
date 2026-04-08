@@ -46,12 +46,12 @@
 /*** Indicators ***/
 #define LED0                    PC13  //Blue  
 
-#define BEEPER                  PC15
+#define BEEPER                  PB8   // PATCHED: RC405 uses PB8 (was PC15)
 #define BEEPER_INVERTED
 
 #define USE_PINIO
 #define USE_PINIOBOX
-#define PINIO1_PIN                  PB11
+#define PINIO1_PIN                  PA14  // PATCHED: RC405 uses PA14 (was PB11)
 #define PINIO1_FLAGS                PINIO_FLAGS_INVERTED
 
 // *************** UART *****************************
@@ -135,30 +135,34 @@
 #define SPI3_MISO_PIN           PB4
 #define SPI3_MOSI_PIN           PB5
 
-#define USE_SDCARD
-#define USE_SDCARD_SPI
-#define SDCARD_SPI_BUS          BUS_SPI3
-#define SDCARD_CS_PIN           PC14
-
-#define ENABLE_BLACKBOX_LOGGING_ON_SDCARD_BY_DEFAULT
+// PATCHED: RC405 has SPI Flash (not SD card)
+// #define USE_SDCARD
+// #define USE_SDCARD_SPI
+// #define SDCARD_SPI_BUS          BUS_SPI3
+// #define SDCARD_CS_PIN           PC14
+#define USE_FLASHFS
+#define USE_FLASH_M25P16
+#define FLASH_CS_PIN            PC0   // PATCHED: RC405 flash CS on PC0
+#define FLASH_SPI_BUS           BUS_SPI3
+#define ENABLE_BLACKBOX_LOGGING_ON_SPIFLASH_BY_DEFAULT
 
 // *************** OSD *****************************
 #define USE_SPI_DEVICE_2
 #define SPI2_SCK_PIN            PB13
-#define SPI2_MISO_PIN           PC2
-#define SPI2_MOSI_PIN           PC3
+#define SPI2_MISO_PIN           PB14  // PATCHED: RC405 uses PB14 (was PC2)
+#define SPI2_MOSI_PIN           PB15  // PATCHED: RC405 uses PB15 (was PC3)
 
 #define USE_OSD
 #define USE_MAX7456
 #define MAX7456_SPI_BUS         BUS_SPI2
-#define MAX7456_CS_PIN          PB12
+#define MAX7456_CS_PIN          PA13  // PATCHED: RC405 uses PA13 (was PB12)
 
 // *************** ADC *****************************
 
 #define USE_ADC
-#define ADC_CHANNEL_1_PIN           PC0
+#define ADC_CHANNEL_1_PIN           PC2   // PATCHED: RC405 VBAT uses PC2 (was PC0)
 #define ADC_CHANNEL_2_PIN           PC1
-#define ADC_CHANNEL_3_PIN           PC5
+#define ADC_CHANNEL_3_PIN           PC3   // PATCHED: RC405 RSSI uses PC3 (was PC5)
 
 #define VBAT_ADC_CHANNEL            ADC_CHN_1
 #define CURRENT_METER_ADC_CHANNEL   ADC_CHN_2
@@ -166,7 +170,7 @@
 
 // *************** LED *****************************
 #define USE_LED_STRIP
-#define WS2811_PIN PA8
+#define WS2811_PIN PB1  // PATCHED: RC405 uses PB1 (was PA8)
 
 #define DEFAULT_FEATURES                (FEATURE_TX_PROF_SEL  | FEATURE_OSD | FEATURE_CURRENT_METER | FEATURE_VBAT  | FEATURE_BLACKBOX | FEATURE_TELEMETRY)
 #define CURRENT_METER_SCALE     400
